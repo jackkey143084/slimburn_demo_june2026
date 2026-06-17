@@ -13,7 +13,7 @@
 
 ---
 
-**Burn is a next generation Tensor Library and Deep Learning Framework that doesn't compromise on
+**SlimBurn is a next generation Tensor Library and Deep Learning Framework that doesn't compromise on
 <br /> flexibility, efficiency and portability.**
 
 <br/>
