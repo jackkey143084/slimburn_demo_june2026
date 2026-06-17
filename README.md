@@ -32,7 +32,7 @@ in static-graph frameworks, offering optimal speed without impacting flexibility
 
 Burn strives to be as fast as possible on as many hardwares as possible, with robust
 implementations. We believe this flexibility is crucial for modern needs where you may train your
-models in the cloud, then deploy on customer hardwares, which vary from user to user.
+models in the cloud, then deploy on customer hardwares, which vary from user to user. Slim version upports only CPU
 
 </div>
 
@@ -40,16 +40,7 @@ models in the cloud, then deploy on customer hardwares, which vary from user to 
 
 Most backends support all operating systems, so we don't mention them in the tables below.
 
-**GPU Backends:**
 
-|         | CUDA | ROCm | Metal | Vulkan | WebGPU | LibTorch |
-| ------- | ---- | ---- | ----- | ------ | ------ | -------- |
-| Nvidia  | ☑️   | -    | -     | ☑️     | ☑️     | ☑️       |
-| AMD     | -    | ☑️   | -     | ☑️     | ☑️     | ☑️       |
-| Apple   | -    | -    | ☑️    | -      | ☑️     | ☑️       |
-| Intel   | -    | -    | -     | ☑️     | ☑️     | -        |
-| Qualcom | -    | -    | -     | ☑️     | ☑️     | -        |
-| Wasm    | -    | -    | -     | -      | ☑️     | -        |
 
 **CPU Backends:**
 
