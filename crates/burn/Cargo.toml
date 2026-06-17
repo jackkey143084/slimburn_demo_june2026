@@ -1,0 +1,109 @@
+[package]
+authors = ["nathanielsimard <nathaniel.simard.42@gmail.com>"]
+categories = ["science", "no-std", "embedded", "wasm"]
+description = "Flexible and Comprehensive Deep Learning Framework in Rust"
+documentation = "https://docs.rs/burn"
+edition.workspace = true
+keywords = ["deep-learning", "machine-learning", "tensor", "pytorch", "autodiff"]
+license.workspace = true
+name = "burn"
+readme.workspace = true
+repository = "https://github.com/tracel-ai/burn"
+rust-version = "1.92"
+version.workspace = true
+
+[lints]
+workspace = true
+
+[features]
+default = [
+    "std",
+    "optim",
+    "burn-core/default",
+    "burn-train?/default",
+    "burn-nn/default",
+    "burn-optim?/default",
+    "burn-autodiff?/default",
+]
+doc = [
+    "default",
+    "train",
+    "burn-core/doc",
+    "burn-train/doc",
+    "burn-store?/std",
+    "burn-nn/doc",
+    "burn-optim?/doc",
+    "burn-autodiff?/std",
+]
+std = [
+    "burn-core/std",
+    "burn-store?/std",
+    "burn-nn/std",
+    "burn-optim?/std",
+    "burn-autodiff?/std",
+]
+tracing = [
+    "burn-core/tracing",
+    "burn-nn/tracing",
+    "burn-optim?/tracing",
+]
+
+network = ["burn-core/network"]
+
+# Training
+train   = ["burn-train", "optim", "dataset"]
+tui     = ["burn-train?/tui"]
+metrics = ["burn-train?/sys-metrics"]
+
+# Datasets
+dataset         = ["burn-core/dataset"]
+sqlite          = ["burn-core/sqlite"]
+sqlite-bundled  = ["burn-core/sqlite-bundled"]
+
+# Record
+record-item-custom-serde = ["burn-core/record-item-custom-serde"]
+
+# Model storage
+store       = ["burn-store"]
+safetensors = ["store", "burn-store?/safetensors"]
+pytorch     = ["store", "burn-store?/pytorch"]
+
+audio = ["burn-core/audio"]
+
+# Optimizer
+optim = ["burn-optim", "autodiff"]
+
+# Autodiff / IR
+ir       = ["burn-ir"]
+autodiff = ["burn-core/autodiff", "burn-autodiff"]
+fusion   = ["ir", "burn-core/fusion"]
+
+# NdArray backend features
+accelerate       = ["burn-ndarray?/blas-accelerate"]
+autotune         = ["burn-core/autotune"]
+autotune-checks  = ["burn-core/autotune-checks"]
+blas-netlib      = ["burn-ndarray?/blas-netlib"]
+openblas         = ["burn-ndarray?/blas-openblas"]
+openblas-system  = ["burn-ndarray?/blas-openblas-system"]
+simd             = ["burn-ndarray?/simd", "burn-flex?/simd"]
+x86-v4           = ["burn-flex?/x86-v4"]
+apple-amx        = ["burn-flex?/apple-amx"]
+
+# The only backend
+ndarray = ["burn-ndarray", "burn-core/ndarray"]
+
+# Backend extension
+extension = ["burn-core/extension"]
+
+[dependencies]
+burn-core      = { workspace = true }
+burn-train     = { workspace = true, optional = true }
+burn-store     = { workspace = true, optional = true }
+burn-nn        = { workspace = true }
+burn-optim     = { workspace = true, optional = true }
+burn-std       = { workspace = true }
+burn-ndarray   = { workspace = true, optional = true }
+burn-flex      = { workspace = true, optional = true }
+burn-ir        = { workspace = true, optional = true }
+burn-autodiff  = { workspace = true, optional = true }
+burn-dispatch  = { workspace = true, optional = true }

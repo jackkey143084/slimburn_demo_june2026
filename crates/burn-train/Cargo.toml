@@ -1,0 +1,56 @@
+[package]
+authors = ["nathanielsimard <nathaniel.simard.42@gmail.com>"]
+categories = ["science"]
+description = "Training crate for the Burn framework"
+edition.workspace = true
+keywords = ["deep-learning", "machine-learning", "tensor", "pytorch", "ndarray"]
+license.workspace = true
+name = "burn-train"
+readme.workspace = true
+repository = "https://github.com/tracel-ai/burn/tree/main/crates/burn-train"
+documentation = "https://docs.rs/burn-train"
+version.workspace = true
+
+[lints]
+workspace = true
+
+[features]
+default = ["sys-metrics", "tui"]
+doc     = ["default"]
+vision  = ["burn-nn", "burn-store/pytorch", "burn-std/network", "dirs"]
+tracing = ["burn-core/tracing", "burn-optim/tracing"]
+
+sys-metrics = ["nvml-wrapper", "sysinfo", "systemstat"]
+tui         = ["ratatui", "unicode-width"]
+
+[dependencies]
+burn-core  = { workspace = true, features = ["dataset", "std", "flex"] }
+burn-optim = { workspace = true, features = ["std"] }
+burn-nn    = { workspace = true, optional = true, features = ["std"] }
+burn-store = { workspace = true, optional = true, features = ["std"] }
+burn-std   = { workspace = true, default-features = false, features = ["std"] }
+burn-flex  = { workspace = true, features = ["default"] }
+dirs       = { workspace = true, optional = true }
+
+log              = { workspace = true }
+tracing-subscriber = { workspace = true }
+tracing-appender = { workspace = true }
+tracing-core     = { workspace = true }
+
+nvml-wrapper  = { workspace = true, optional = true }
+sysinfo       = { workspace = true, optional = true }
+systemstat    = { workspace = true, optional = true }
+
+ratatui       = { workspace = true, optional = true, features = ["all-widgets", "crossterm"] }
+unicode-width = { workspace = true, optional = true }
+
+derive-new    = { workspace = true }
+serde         = { workspace = true, features = ["std", "derive"] }
+async-channel = { workspace = true }
+rstest        = { workspace = true }
+thiserror     = { workspace = true }
+rand          = { workspace = true }
+
+[package.metadata.docs.rs]
+features = ["doc"]
+rustdoc-args = ["--cfg", "docsrs"]

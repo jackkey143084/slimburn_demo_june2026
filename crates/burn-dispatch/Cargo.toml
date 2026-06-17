@@ -1,0 +1,68 @@
+[package]
+authors = [
+    "laggui <lagrange.guillaume.1@gmail.com>",
+    "nathanielsimard <nathaniel.simard.42@gmail.com>",
+]
+categories = ["science"]
+description = "Backend dispatch for the Burn framework"
+edition.workspace = true
+keywords = ["deep-learning", "machine-learning", "data"]
+license.workspace = true
+name = "burn-dispatch"
+readme.workspace = true
+repository = "https://github.com/tracel-ai/burn/tree/main/crates/burn-dispatch"
+documentation = "https://docs.rs/burn-dispatch"
+version.workspace = true
+
+[lints]
+workspace = true
+
+[features]
+default = [
+    "std",
+    "burn-autodiff?/default",
+    "burn-flex/default",
+    "burn-ndarray?/default",
+]
+doc = ["default"]
+std = [
+    "burn-backend/std",
+    "burn-autodiff?/std",
+    "burn-flex/std",
+    "burn-ndarray?/std",
+]
+tracing = [
+    "burn-autodiff?/tracing",
+    "burn-flex/tracing",
+    "burn-ndarray?/tracing",
+]
+
+flex            = []
+autotune        = []
+autotune-checks = []
+fusion          = []
+ndarray  = ["burn-ndarray"]
+autodiff = ["burn-autodiff"]
+
+# NdArray BLAS / SIMD features
+simd            = ["burn-ndarray?/simd", "burn-flex/simd"]
+blas-netlib     = ["burn-ndarray?/blas-netlib"]
+openblas        = ["burn-ndarray?/blas-openblas"]
+openblas-system = ["burn-ndarray?/blas-openblas-system"]
+accelerate      = ["burn-ndarray?/blas-accelerate"]
+x86-v4          = ["burn-flex/x86-v4"]
+apple-amx       = ["burn-flex/apple-amx"]
+
+[dependencies]
+burn-backend  = { workspace = true }
+burn-autodiff = { workspace = true, optional = true }
+burn-flex     = { workspace = true }
+burn-ndarray  = { workspace = true, optional = true }
+paste         = { workspace = true }
+
+[target.'cfg(not(target_has_atomic = "ptr"))'.dependencies]
+burn-flex = { workspace = true, features = ["critical-section"] }
+
+[package.metadata.docs.rs]
+features = ["doc"]
+rustdoc-args = ["--cfg", "docsrs"]
