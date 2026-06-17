@@ -32,7 +32,7 @@ in static-graph frameworks, offering optimal speed without impacting flexibility
 
 Burn strives to be as fast as possible on as many hardwares as possible, with robust
 implementations. We believe this flexibility is crucial for modern needs where you may train your
-models in the cloud, then deploy on customer hardwares, which vary from user to user. Slim version upports only CPU
+models in the cloud, then deploy on customer hardwares, which vary from user to user. Slim version supports only CPU
 
 </div>
 
